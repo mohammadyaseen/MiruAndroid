@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e4ac2b</color>
+    <color name="colorPrimaryDark">#d29b1b</color>
+    <color name="colorAccent">#041b41</color>
+    <color name="red">#FF3D3D</color>
+    <color name="light_gray">#C5C5C5</color>
+    <color name="dark_gray">#505050</color>
+    <color name="light_black">#313131</color>
+    <color name="white">#FFFFFF</color>
+    <color name="yellow">#FEC905</color>
+    <color name="green_dark">#048514</color>
+    <color name="bg_light">#F8F6F7</color>
+    <color name="toolbar_white">#F8F6F7</color>
+    <color name="status_barColor">#707070</color>
+    <color name="ledger_color">#EFEFEF</color>
+    <color name="verification_box">#d1bedc</color>
+    <color name="verification_box2">#beedc3</color>
+    <color name="text_color_hint">#beedc3</color>
+    <color name="excellent_color">#31c0fe</color>
+    <color name="date_background_color">#222122</color>
+
+    <color name="lightYellow">#f8fd9e</color>
+
+
+
+    <color name="l_gray">#e6e6e6</color>
+    <color name="l_l_gray">#feefefef</color>
+    <color name="gray">#c4c4c4</color>
+    <color name="d_gray">#999999</color>
+
+    <!--
+     <color name="colorPrimary">#008577</color>
+     <color name="colorPrimaryDark">#00574B</color>
+     <color name="colorAccent">#D81B60</color>
+
+    <color name="l_gray">#bdf7f1</color>
+    <color name="l_l_gray">#a3f7ee</color>
+    <color name="gray">#39c6b7</color>
+    <color name="d_gray">#008779</color>
+     -->
+
+    <color name="black">#000</color>
+
+    <color name="background_1">#008cb3</color>
+</resources>

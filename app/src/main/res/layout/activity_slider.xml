@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:weightSum="100"
+    tools:context=".Activities.Slider">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="90"
+        android:id="@+id/relative">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+
+            />
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="bottom"
+            android:padding="10dip"
+            app:centered="true"
+            app:fillColor="#e4ac2b"
+            app:pageColor="#fff"
+            app:snap="false" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:weightSum="100"
+        android:orientation="horizontal"
+        android:elevation="20sp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Sign Up"
+            android:id="@+id/sign_up"
+            android:background="@android:color/white"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAllCaps="false"
+            android:elevation="20sp"
+            android:layout_weight="50"
+            />
+
+        <Button
+            android:layout_weight="50"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/sign_in"
+            android:text="Sign In "
+            android:textAllCaps="false"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@android:color/white"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>
