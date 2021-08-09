@@ -3,37 +3,29 @@ package com.entertechsolutions.miruandroid.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class HierarchyList {
+public class VideosModel {
 
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("parentId")
+    @SerializedName("link")
     @Expose
-    private Integer parentId;
-    @SerializedName("parentName")
-    @Expose
-    private Object parentName;
-    @SerializedName("imagePath")
-    @Expose
-    private String imagePath;
+    private String link;
     @SerializedName("descp")
     @Expose
-    private Object descp;
-    @SerializedName("base64")
+    private String descp;
+    @SerializedName("topicId")
     @Expose
-    private Object base64;
+    private Integer topicId;
+    @SerializedName("videoDate")
+    @Expose
+    private String videoDate;
     @SerializedName("isShow")
     @Expose
     private Boolean isShow;
-    @SerializedName("imagePathFull")
+    @SerializedName("topicName")
     @Expose
-    private String imagePathFull;
-    @SerializedName("topics")
-    @Expose
-    private List<TopicsModel> topics = null;
+    private String topicName;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -67,44 +59,36 @@ public class HierarchyList {
         this.name = name;
     }
 
-    public Integer getParentId() {
-        return parentId;
+    public String getLink() {
+        return link;
     }
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
+    public void setLink(String link) {
+        this.link = link;
     }
 
-    public Object getParentName() {
-        return parentName;
-    }
-
-    public void setParentName(Object parentName) {
-        this.parentName = parentName;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public Object getDescp() {
+    public String getDescp() {
         return descp;
     }
 
-    public void setDescp(Object descp) {
+    public void setDescp(String descp) {
         this.descp = descp;
     }
 
-    public Object getBase64() {
-        return base64;
+    public Integer getTopicId() {
+        return topicId;
     }
 
-    public void setBase64(Object base64) {
-        this.base64 = base64;
+    public void setTopicId(Integer topicId) {
+        this.topicId = topicId;
+    }
+
+    public String getVideoDate() {
+        return videoDate;
+    }
+
+    public void setVideoDate(String videoDate) {
+        this.videoDate = videoDate;
     }
 
     public Boolean getIsShow() {
@@ -115,20 +99,12 @@ public class HierarchyList {
         this.isShow = isShow;
     }
 
-    public String getImagePathFull() {
-        return imagePathFull;
+    public String getTopicName() {
+        return topicName;
     }
 
-    public void setImagePathFull(String imagePathFull) {
-        this.imagePathFull = imagePathFull;
-    }
-
-    public List<TopicsModel> getTopics() {
-        return topics;
-    }
-
-    public void setTopics(List<TopicsModel> topics) {
-        this.topics = topics;
+    public void setTopicName(String topicName) {
+        this.topicName = topicName;
     }
 
     public Integer getId() {

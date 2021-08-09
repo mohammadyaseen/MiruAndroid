@@ -5,138 +5,203 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.abdshammout.UBV.OnClickListenerBreadcrumbs;
+import com.abdshammout.UBV.UltimateBreadcrumbsView;
+import com.abdshammout.UBV.model.PathItem;
+import com.abdshammout.UBV.model.PathItemStyle;
 import com.entertechsolutions.miruandroid.Adapters.MainListAdapter;
-import com.entertechsolutions.miruandroid.Models.GenericResponseModelArray;
 import com.entertechsolutions.miruandroid.Models.HierarchyList;
 import com.entertechsolutions.miruandroid.Models.HierarchyModel;
 import com.entertechsolutions.miruandroid.Models.Task_Model;
 import com.entertechsolutions.miruandroid.MyApplication;
 import com.entertechsolutions.miruandroid.R;
 import com.entertechsolutions.miruandroid.Utils.ServiceUtils;
-import com.github.ayvazj.breadcrumblayout.BreadcrumbLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    BreadcrumbLayout breadcrumbLayout;
+    UltimateBreadcrumbsView ultimateBreadcrumbsView;
     private LinearLayoutManager lLayout;
     List<Task_Model> rowListItem;
     MainListAdapter adapter;
     List<HierarchyList> requestlist = new ArrayList<>();
     Button back_btn;
-
+    HierarchyModel list ;
     String userToken = "6bPUFHaUpxMIVeP6YCVSZg==";
-    ProgressBar progressBar;
     String Rid = "0";
+    android.app.AlertDialog waitingDialog;
+    ArrayList<String> stringsBreadcrumb = new ArrayList<>();
+    PathItem pathItem ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        back_btn = findViewById(R.id.back_btn_l);
+        back_btn.setOnClickListener(v -> onBackPressed());
+        stringsBreadcrumb.add("System");
+
+
+        ultimateBreadcrumbsView = findViewById(R.id.ultimateBreadcrumbsView);
+
+        PathItemStyle pathItemStyle = new PathItemStyle();
+        pathItemStyle.setPathItemBackgroundResId(R.drawable.bg_two_corner);
+        pathItemStyle.setActivePathItemBackgroundResId(R.drawable.bg_two_corner_active);
+
+        pathItemStyle.setPathItemTextColor(getResources().getColor(android.R.color.white));//or Color.WHITE
+        pathItemStyle.setActivePathItemTextColor(Color.WHITE);
+
+
+        ultimateBreadcrumbsView.setPathItemStyle(pathItemStyle);
+
+        ultimateBreadcrumbsView.setBackButtonBackgroundRes(R.drawable.bg_two_corner);
+        ultimateBreadcrumbsView.setBackButtonIconRes(R.drawable.ic_home_black_24dp);
 
 
 
-        breadcrumbLayout = findViewById(R.id.breadcrumbLayout);
 
-        //getRequest();
-       // RecyclerView rView = findViewById(R.id.recycleMain);
-       // LinearLayoutManager layoutManager = new LinearLayoutManager(MyApplication.getContext());
-       /* rView.setItemAnimator(new DefaultItemAnimator());
+
+        ultimateBreadcrumbsView.setOnClickListenerBreadcrumbs(new OnClickListenerBreadcrumbs() {
+            @Override
+            public void onBackClick() {
+                getRequest("0");
+                ultimateBreadcrumbsView.back();
+                Toast.makeText(MainActivity.this,
+                        "onBackClick", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPathItemClick(int index, String title, int id) {
+                getRequest(Integer.toString(id));
+                Toast.makeText(MainActivity.this,
+                        index+"  onPathItemClick = "+title, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPathItemLongClick(int index, String title, int id) {
+                Toast.makeText(MainActivity.this,
+                        index+"  onPathItemLongClick = "+title, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        ultimateBreadcrumbsView.initUltimateBreadcrumbsView();
+
+       // breadcrumbLayout.setBreadCrumbItems();path.map { BreadCrumb(it) }))
+
+        waitingDialog = new SpotsDialog.Builder()
+                .setContext(MainActivity.this)
+                .setTheme(R.style.Custom)
+                .setCancelable(false)
+                .build();
+
+        if (Rid=="0"){
+            getRequest(Rid);
+        }
+
+        RecyclerView rView = findViewById(R.id.recycleMain);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(MyApplication.getContext());
+        rView.setItemAnimator(new DefaultItemAnimator());
         rView.setLayoutManager(layoutManager);
 
 
 
-        rView.setAdapter(adapter);
-*/
-        rowListItem = getAllItemList();
+       /* rowListItem = getAllItemList();
         lLayout = new LinearLayoutManager(MainActivity.this);
         RecyclerView recyclerView = findViewById(R.id.recycleMain);
-        recyclerView.setLayoutManager(lLayout);
+        recyclerView.setLayoutManager(lLayout);*/
 
 
-
-        MainListAdapter adapter = new MainListAdapter(MainActivity.this, rowListItem, new MainListAdapter.OnItemClickListener() {
+          adapter = new MainListAdapter(MainActivity.this, requestlist, new MainListAdapter.OnItemClickListener() {
             @Override
-            public void onClick(Task_Model main_task_model) {
+            public void onClick(HierarchyList main_task_model) {
+                getRequest(main_task_model.getId().toString());
 
-            }
-        });
+                if (!list.getData().isEmpty()) {
+                    pathItem = new PathItem(main_task_model.getName(), main_task_model.getId());
 
-        recyclerView.setAdapter(adapter);
+                    ultimateBreadcrumbsView.addToPath(pathItem);
 
-
-
-
-
-
-
-        // add a breadcrumb
-        breadcrumbLayout.addCrumb(breadcrumbLayout.newCrumb().setText("breadcrumb text"));
-
-        // remove a breadcrumb
-        breadcrumbLayout.removeCrumbAt(breadcrumbLayout.getCrumbCount() - 1);
-
-        // listen for selections
-        breadcrumbLayout.setOnBreadcrumbSelectedListener(new BreadcrumbLayout.OnBreadcrumbSelectedListener() {
-            @Override
-            public void onBreadcrumbSelected(BreadcrumbLayout.Breadcrumb crumb) {
-               /* if ( crumb.getTag() != null && crumb.getTag() instanceof Pokemon) {
-                   // imageView.setImageResource(((Pokemon)crumb.getTag()).drawableRes);
                 }
-                else {
-                   // imageView.setImageDrawable(null);
-                }*/
+               // breadcrumbLayout.addCrumb(breadcrumbLayout.newCrumb().setText(main_task_model.getName()));
             }
 
-            @Override
-            public void onBreadcrumbUnselected(BreadcrumbLayout.Breadcrumb crumb) {
+              @Override
+              public void topic(HierarchyList hierarchyList) {
+                  Intent it = new Intent(MainActivity.this, Topics.class);
+                  it.putExtra("Rid", hierarchyList.getId().toString());
+                  startActivity(it);
+                  Toast.makeText(MyApplication.getContext(),hierarchyList.getId().toString(),Toast.LENGTH_LONG).show();
+              }
+          });
 
-            }
+        rView.setAdapter(adapter);
 
-            @Override
-            public void onBreadcrumbReselected(BreadcrumbLayout.Breadcrumb crumb) {
+       // recyclerView.setAdapter(adapter);
 
-            }
-        });
 
 
     }
 
 
-    public void getRequest(){
+    public void getRequest(String rid){
 
-        String url = "api/Hierarchy/GetParent?id="+Rid;
-
-            ServiceUtils.api.gettaskF(url,userToken)
+        waitingDialog.show();
+        String url = "api/Hierarchy/GetByParent?id="+rid;
+        ServiceUtils.api.gettaskF(url,userToken)
                 .enqueue(new Callback<HierarchyModel>() {
                     @Override
                     public void onResponse(Call<HierarchyModel> call, Response<HierarchyModel> response) {
                         // progress.setVisibility(View.GONE);
-                        HierarchyModel list = response.body();
+                         list = response.body();
 
                         if (response.isSuccessful() && response.body() != null){
                             assert list != null;
                             Log.e("onResponse "," " + response);
-                            Log.e("data","main  " +list.getData());
+                           // Log.d("data","main  " +list.getData().get(0).getName());
                             if (list.getIsSuccess()){
 
-                                Log.e("data","Token  " +list.getData());
-                                requestlist.clear();
-                                requestlist.addAll(list.getData());
-                                adapter.notifyDataSetChanged();
-                                progressBar.setVisibility(View.GONE);
+                                if (!list.getData().isEmpty()) {
+
+                                    Log.e("data", "Token  " + list.getData());
+                                    //requestlist.clear();
+
+                                    if (list.getData() != null) {
+
+                                        if (rid == "0") {
+                                            requestlist.clear();
+                                            requestlist.addAll(list.getData());
+                                            adapter.notifyDataSetChanged();
+                                        } else {
+                                            requestlist.clear();
+                                            requestlist.addAll(list.getData());
+                                            adapter.notifyDataSetChanged();
+                                            if (requestlist.isEmpty()) {
+                                                Toast.makeText(MyApplication.getContext(), "Not Found", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    } else {
+                                        Toast.makeText(MyApplication.getContext(), "Not Found", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                                else {
+                                    Toast.makeText(MyApplication.getContext(), "Not Found", Toast.LENGTH_LONG).show();
+                                }
+                               // progressBar.setVisibility(View.GONE);
+                                waitingDialog.hide();
 
                                 // Toast.makeText(Verify_OTP.this,loginResponse.getError(),Toast.LENGTH_LONG).show();
                                 /* Intent it = new Intent(Registration_one.this, Registration_one.class);
@@ -155,9 +220,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<HierarchyModel> call, Throwable t) {
 
-                        Toast.makeText(MyApplication.getContext(),"Something Went Wrong Please Try Again", Toast.LENGTH_SHORT).show();
-                        Log.e("failure","here................");
-                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(MyApplication.getContext(),"check"+t, Toast.LENGTH_SHORT).show();
+                        Log.e("failure","here................  "+t);
+                       // progressBar.setVisibility(View.GONE);
+                        waitingDialog.hide();
                     }
                 });
 
@@ -167,9 +233,9 @@ public class MainActivity extends AppCompatActivity {
     private List<Task_Model> getAllItemList(){
 
         List<Task_Model> allItems = new ArrayList<>();
-        allItems.add(new Task_Model("Changed Plug"));
-        allItems.add(new Task_Model("Clean"));
-        allItems.add(new Task_Model("Change dex"));
+        allItems.add(new Task_Model("British Curriculum"));
+        allItems.add(new Task_Model("International Baccalaureate"));
+        allItems.add(new Task_Model("American Curriculum"));
         return allItems;
     }
 

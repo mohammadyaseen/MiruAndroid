@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_viewWeek"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="15dp"
+        card_view:cardElevation="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        card_view:cardUseCompatPadding="false">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/topicName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="British"
+                android:textSize="25sp"
+                android:layout_gravity="start"
+                android:elevation="25dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginBottom="5sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/courseName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/topicName"
+                android:gravity="start"
+                android:text="British"
+                android:textSize="20sp"
+                android:layout_gravity="start"
+                android:elevation="30dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="5sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
+
+</RelativeLayout>

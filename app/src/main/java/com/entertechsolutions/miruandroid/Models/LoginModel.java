@@ -3,37 +3,30 @@ package com.entertechsolutions.miruandroid.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+public class LoginModel {
 
-public class HierarchyList {
 
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("parentId")
+    @SerializedName("email")
     @Expose
-    private Integer parentId;
-    @SerializedName("parentName")
+    private String email;
+    @SerializedName("phoneNo")
     @Expose
-    private Object parentName;
-    @SerializedName("imagePath")
+    private String phoneNo;
+    @SerializedName("password")
     @Expose
-    private String imagePath;
-    @SerializedName("descp")
+    private String password;
+    @SerializedName("token")
     @Expose
-    private Object descp;
-    @SerializedName("base64")
-    @Expose
-    private Object base64;
+    private String token;
     @SerializedName("isShow")
     @Expose
     private Boolean isShow;
-    @SerializedName("imagePathFull")
+    @SerializedName("isMobileCall")
     @Expose
-    private String imagePathFull;
-    @SerializedName("topics")
-    @Expose
-    private List<TopicsModel> topics = null;
+    private Boolean isMobileCall;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -54,10 +47,34 @@ public class HierarchyList {
     private Boolean isActive;
     @SerializedName("verificationCode")
     @Expose
-    private Object verificationCode;
+    private String verificationCode;
     @SerializedName("isVerified")
     @Expose
     private Boolean isVerified;
+
+
+
+
+    @SerializedName("authToken")
+    @Expose
+    private String authToken;
+
+    public String getAuthToken() {
+        return authToken;
+    }
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+
+    public LoginModel(Integer id,String name, String email,   Boolean isActive, Boolean isVerified,String phoneNo, String authToken) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phoneNo = phoneNo;
+        this.isActive = isActive;
+        this.isVerified = isVerified;
+        this.authToken = authToken;
+    }
 
     public String getName() {
         return name;
@@ -67,44 +84,36 @@ public class HierarchyList {
         this.name = name;
     }
 
-    public Integer getParentId() {
-        return parentId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Object getParentName() {
-        return parentName;
+    public String getPhoneNo() {
+        return phoneNo;
     }
 
-    public void setParentName(Object parentName) {
-        this.parentName = parentName;
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public String getPassword() {
+        return password;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Object getDescp() {
-        return descp;
+    public String getToken() {
+        return token;
     }
 
-    public void setDescp(Object descp) {
-        this.descp = descp;
-    }
-
-    public Object getBase64() {
-        return base64;
-    }
-
-    public void setBase64(Object base64) {
-        this.base64 = base64;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Boolean getIsShow() {
@@ -115,20 +124,12 @@ public class HierarchyList {
         this.isShow = isShow;
     }
 
-    public String getImagePathFull() {
-        return imagePathFull;
+    public Boolean getIsMobileCall() {
+        return isMobileCall;
     }
 
-    public void setImagePathFull(String imagePathFull) {
-        this.imagePathFull = imagePathFull;
-    }
-
-    public List<TopicsModel> getTopics() {
-        return topics;
-    }
-
-    public void setTopics(List<TopicsModel> topics) {
-        this.topics = topics;
+    public void setIsMobileCall(Boolean isMobileCall) {
+        this.isMobileCall = isMobileCall;
     }
 
     public Integer getId() {
@@ -179,11 +180,11 @@ public class HierarchyList {
         this.isActive = isActive;
     }
 
-    public Object getVerificationCode() {
+    public String getVerificationCode() {
         return verificationCode;
     }
 
-    public void setVerificationCode(Object verificationCode) {
+    public void setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
     }
 

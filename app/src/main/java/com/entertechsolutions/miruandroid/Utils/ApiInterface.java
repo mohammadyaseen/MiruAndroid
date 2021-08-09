@@ -1,12 +1,22 @@
 package com.entertechsolutions.miruandroid.Utils;
 
 
+import com.entertechsolutions.miruandroid.Activities.Videos;
+import com.entertechsolutions.miruandroid.Models.GenericResponseModelArray;
 import com.entertechsolutions.miruandroid.Models.HierarchyModel;
+import com.entertechsolutions.miruandroid.Models.LoginResponce;
+import com.entertechsolutions.miruandroid.Models.SignUpResponce;
+import com.entertechsolutions.miruandroid.Models.TopicsModel;
+import com.entertechsolutions.miruandroid.Models.VerifyModel;
+import com.entertechsolutions.miruandroid.Models.VideosModel;
+import com.google.gson.JsonObject;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Url;
 
 public interface ApiInterface {
@@ -17,6 +27,44 @@ public interface ApiInterface {
     @Headers({"Accept: application/json", "Content-Type: application/json"})
     @GET
     Call<HierarchyModel> gettaskF(
+            @Url String url,
+            @Header("token") String token);
+
+    //Registration
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @POST("api/Parents/Add")
+    Call<SignUpResponce> register(
+           // @Header("token") String token,
+            @Body JsonObject body
+    );
+
+    //Login
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @POST("api/Parents/Login")
+    Call<LoginResponce> Login(
+            @Body JsonObject body
+    );
+
+
+    //Verify code
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @POST("api/Parents/Verify")
+    Call<VerifyModel> getcode(
+            // @Header("token") String token,
+            @Body JsonObject body
+    );
+
+    //Get task list
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @GET
+    Call<GenericResponseModelArray<TopicsModel>> getTopic(
+            @Url String url,
+            @Header("token") String token);
+
+    //Get task list
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @GET
+    Call<GenericResponseModelArray<VideosModel>> getVideos(
             @Url String url,
             @Header("token") String token);
 

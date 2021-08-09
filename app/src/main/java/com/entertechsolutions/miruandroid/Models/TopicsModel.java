@@ -3,37 +3,32 @@ package com.entertechsolutions.miruandroid.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class HierarchyList {
+public class TopicsModel {
 
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("parentId")
+    @SerializedName("link")
     @Expose
-    private Integer parentId;
-    @SerializedName("parentName")
-    @Expose
-    private Object parentName;
-    @SerializedName("imagePath")
-    @Expose
-    private String imagePath;
+    private Object link;
     @SerializedName("descp")
     @Expose
     private Object descp;
-    @SerializedName("base64")
+    @SerializedName("courseId")
     @Expose
-    private Object base64;
+    private Integer courseId;
+    @SerializedName("teacherId")
+    @Expose
+    private Integer teacherId;
     @SerializedName("isShow")
     @Expose
     private Boolean isShow;
-    @SerializedName("imagePathFull")
+    @SerializedName("courseName")
     @Expose
-    private String imagePathFull;
-    @SerializedName("topics")
+    private String courseName;
+    @SerializedName("teacherName")
     @Expose
-    private List<TopicsModel> topics = null;
+    private String teacherName;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -67,28 +62,12 @@ public class HierarchyList {
         this.name = name;
     }
 
-    public Integer getParentId() {
-        return parentId;
+    public Object getLink() {
+        return link;
     }
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
-
-    public Object getParentName() {
-        return parentName;
-    }
-
-    public void setParentName(Object parentName) {
-        this.parentName = parentName;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setLink(Object link) {
+        this.link = link;
     }
 
     public Object getDescp() {
@@ -99,12 +78,20 @@ public class HierarchyList {
         this.descp = descp;
     }
 
-    public Object getBase64() {
-        return base64;
+    public Integer getCourseId() {
+        return courseId;
     }
 
-    public void setBase64(Object base64) {
-        this.base64 = base64;
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
+
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 
     public Boolean getIsShow() {
@@ -115,20 +102,20 @@ public class HierarchyList {
         this.isShow = isShow;
     }
 
-    public String getImagePathFull() {
-        return imagePathFull;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setImagePathFull(String imagePathFull) {
-        this.imagePathFull = imagePathFull;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
-    public List<TopicsModel> getTopics() {
-        return topics;
+    public String getTeacherName() {
+        return teacherName;
     }
 
-    public void setTopics(List<TopicsModel> topics) {
-        this.topics = topics;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     public Integer getId() {
@@ -194,4 +181,5 @@ public class HierarchyList {
     public void setIsVerified(Boolean isVerified) {
         this.isVerified = isVerified;
     }
+
 }

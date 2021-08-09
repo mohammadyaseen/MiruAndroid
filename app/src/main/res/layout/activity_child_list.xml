@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Activities.MainActivity">
+    tools:context=".Activities.ChildList">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/Main_toolbar"
@@ -14,7 +13,7 @@
         android:background="@color/colorPrimaryDark">
 
         <Button
-            android:id="@+id/back_btn_l"
+            android:id="@+id/backBtnChild"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
@@ -25,25 +24,28 @@
     </androidx.appcompat.widget.Toolbar>
 
 
-    <com.abdshammout.UBV.UltimateBreadcrumbsView
-        android:id="@+id/ultimateBreadcrumbsView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:pathItemBackground="@drawable/bg_two_corner"
-        app:pathItemTextColor="@android:color/white"
-        app:activePathItemBackground="@drawable/bg_two_corner_active"
-        app:activePathItemTextColor="@android:color/black"
-        app:backButtonBackground="@drawable/bg_two_corner"
-        app:backButtonIcon="@drawable/ic_arrow_forward_black_24dp">
-    </com.abdshammout.UBV.UltimateBreadcrumbsView>
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/Main_toolbar"
         android:layout_marginTop="10dp"
-        android:id="@+id/recycleMain"/>
+        android:id="@+id/recycleChild"/>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addChild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_add_black_24dp"
+        android:tint="@color/white"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="Add Question"
+        />
 
 
 
-
-</LinearLayout>
+</RelativeLayout>

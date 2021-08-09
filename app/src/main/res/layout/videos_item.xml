@@ -11,59 +11,64 @@
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="15dp"
         card_view:cardElevation="5dp"
-        android:layout_margin="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         card_view:cardUseCompatPadding="false">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:elevation="30dp"
+            android:padding="5dp"
             android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:cropToPadding="false"
-            android:scaleType="centerCrop"
-            android:src="@drawable/check"
-            android:id="@+id/imageFlag"/>
-
-
             <TextView
-                android:id="@+id/text_view"
+                android:id="@+id/videoName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/imageFlag"
-                android:layout_marginTop="-5dp"
                 android:gravity="center"
-                android:background="@color/white"
                 android:text="British"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:layout_gravity="center"
-                android:elevation="0dp"
+                android:elevation="25dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginBottom="5sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/topicName2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/videoName"
+                android:gravity="center"
+                android:text="British"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:elevation="30dp"
                 android:textColor="@color/colorAccent"
                 android:layout_marginBottom="5sp"
-                 />
+                android:textStyle="bold" />
 
 
             <Button
-                android:id="@+id/task_btn_done"
-                android:layout_width="wrap_content"
+                android:id="@+id/watchBtn"
+                android:layout_width="110dp"
                 android:layout_height="35dp"
                 android:layout_marginLeft="5dp"
-                android:layout_below="@id/text_view"
-                android:background="@color/colorPrimaryDark"
+                android:layout_below="@id/topicName2"
+                android:background="@drawable/border_btn_task"
                 android:elevation="15dp"
-                android:textColor="@color/white"
-                android:text="Topics"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Watch Video"
                 android:textStyle="bold"
                 android:textSize="13sp"
                 android:layout_marginTop="2dp"
                 android:layout_centerInParent="true"
                 android:layout_marginBottom="3dp"
                 android:gravity="center" />
+
 
         </RelativeLayout>
 

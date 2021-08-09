@@ -26,12 +26,12 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
 
 
 
-    List<Task_Model> mValues;
+    List<HierarchyList> mValues;
     Context mContext;
     private MainListAdapter.OnItemClickListener mListener;
 
 
-    public MainListAdapter(Context context, List<Task_Model> values, MainListAdapter.OnItemClickListener listener1){
+    public MainListAdapter(Context context, List<HierarchyList> values, MainListAdapter.OnItemClickListener listener1){
 
         this.mContext = context;
         this.mValues = values;
@@ -42,18 +42,20 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
         ImageView imageView;
+        Button topicsClick;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.text_view);
             imageView = itemView.findViewById(R.id.imageFlag);
+            topicsClick = itemView.findViewById(R.id.task_btn_done);
 
             // cancel = itemView.findViewById(R.id.task_btn_cancel);
 
         }
 
-        public void bind(final Task_Model item, final MainListAdapter.OnItemClickListener listener) {
+        private void bind(final HierarchyList item, final MainListAdapter.OnItemClickListener listener) {
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +64,13 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
 
                     listener.onClick(item);
 
+                }
+            });
+
+            topicsClick.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.topic(item);
                 }
             });
 
@@ -85,26 +94,32 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
         holder.bind(mValues.get(position), mListener);
        // int stutusint = mValues.get(position).getStatus();
 
-
-         holder.bind(mValues.get(position), mListener);
+       //  holder.bind(mValues.get(position), mListener);
 
         //holder.imageView.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,icon,0);
 
+        if (mValues.get(position).getTopics().isEmpty()){
+            holder.topicsClick.setVisibility(View.GONE);
+        }
+        else {
+            holder.topicsClick.setVisibility(View.VISIBLE);
+        }
 
         holder.name.setText(mValues.get(position).getName());
+        int icon = R.drawable.ic_clear_black_24dp;
 
-       /* String pathimage = mValues.get(position).getImagePath();
-        if (pathimage.isEmpty()){
-            holder.imageView.setVisibility(View.GONE);
+        String pathimage = mValues.get(position).getImagePathFull();
+        if (mValues.get(position).getImagePathFull()==null){
+            holder.imageView.setBackgroundResource(R.drawable.ic_clear_black_24dp);
         }
         else {
             holder.imageView.setVisibility(View.VISIBLE);
             Glide.with(holder.imageView)
-                    .load(Constant.BASE_URL+pathimage)
+                    .load(pathimage)
                     .skipMemoryCache( false )
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(holder.imageView);
-        }*/
+        }
 
        // holder.imageView.(mValues.get(position).getTaskDetail());
 
@@ -117,7 +132,8 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
     }
 
     public interface OnItemClickListener {
-        void onClick(Task_Model main_task_model);
+        void onClick(HierarchyList main_task_model);
+        void topic(HierarchyList hierarchyList);
     }
 
 

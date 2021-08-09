@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.entertechsolutions.miruandroid">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
-
 
     <application
         android:name=".MyApplication"
@@ -15,10 +13,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activities.Registration" android:theme="@style/statusBarColor"></activity>
-        <activity android:name=".Activities.Slider" android:theme="@style/themeForBg"/>
-        <activity android:name=".Activities.Login" android:theme="@style/statusBarColor"/>
+        <activity android:name=".Activities.YoutubeVideo" android:theme="@style/statusBarColor"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"></activity>
+        <activity android:name=".Activities.Videos" android:theme="@style/statusBarColor"/>
+        <activity android:name=".Activities.Topics" android:theme="@style/statusBarColor"/>
+        <activity
+            android:name=".Activities.RegisterChild"
+            android:theme="@style/statusBarColor" />
+        <activity
+            android:name=".Activities.ChildList"
+            android:theme="@style/statusBarColor" />
+        <activity
+            android:name=".Activities.VerifyCode"
+            android:theme="@style/statusBarColor" />
+        <activity
+            android:name=".Activities.Registration"
+            android:theme="@style/statusBarColor" />
+        <activity
+            android:name=".Activities.Slider"
+            android:theme="@style/themeForBg" />
+        <activity
+            android:name=".Activities.Login"
+            android:theme="@style/statusBarColor" />
         <activity
             android:name=".Activities.Splash"
             android:theme="@style/themeForBg">
@@ -28,7 +46,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MainActivity" android:theme="@style/statusBarColor"/>
+        <activity
+            android:name=".Activities.MainActivity"
+            android:theme="@style/statusBarColor" />
     </application>
 
 </manifest>

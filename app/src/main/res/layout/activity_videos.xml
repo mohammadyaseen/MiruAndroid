@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.MainActivity">
+    android:layout_height="match_parent"
+    tools:context=".Activities.Videos">
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/Main_toolbar"
@@ -14,7 +15,7 @@
         android:background="@color/colorPrimaryDark">
 
         <Button
-            android:id="@+id/back_btn_l"
+            android:id="@+id/backVideos"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
@@ -22,27 +23,27 @@
             android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
             android:backgroundTint="@android:color/white" />
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:text="Videos"
+            android:textColor="@color/white"
+            />
+
+
     </androidx.appcompat.widget.Toolbar>
 
-
-    <com.abdshammout.UBV.UltimateBreadcrumbsView
-        android:id="@+id/ultimateBreadcrumbsView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:pathItemBackground="@drawable/bg_two_corner"
-        app:pathItemTextColor="@android:color/white"
-        app:activePathItemBackground="@drawable/bg_two_corner_active"
-        app:activePathItemTextColor="@android:color/black"
-        app:backButtonBackground="@drawable/bg_two_corner"
-        app:backButtonIcon="@drawable/ic_arrow_forward_black_24dp">
-    </com.abdshammout.UBV.UltimateBreadcrumbsView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:id="@+id/recycleMain"/>
-
+        android:id="@+id/recycleVideos"/>
 
 
 

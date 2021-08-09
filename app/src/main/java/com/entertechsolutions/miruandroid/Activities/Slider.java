@@ -13,6 +13,7 @@ import android.widget.Button;
 import com.entertechsolutions.miruandroid.Adapters.Sliding_image_adapter;
 import com.entertechsolutions.miruandroid.Models.image_Model;
 import com.entertechsolutions.miruandroid.R;
+import com.entertechsolutions.miruandroid.Storage.SharedPreffManager;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class Slider extends AppCompatActivity {
     private static int NUM_PAGES = 0;
     private ArrayList<image_Model> imageModelArrayList;
 
-    private int[] myImageList = new int[]{R.drawable.mirulogo, R.drawable.mirulogo,
+    private int[] myImageList = new int[]{R.drawable.banner1, R.drawable.mirulogo,
             R.drawable.mirulogo,R.drawable.mirulogo};
 
 
@@ -71,11 +72,11 @@ public class Slider extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-       /* if (SharedPreffManager.getInstance(this).isLoggedIn()) {
+        if (SharedPreffManager.getInstance(this).isLoggedIn()) {
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-        }*/
+        }
 
     }
 
@@ -90,6 +91,7 @@ public class Slider extends AppCompatActivity {
 
         return list;
     }
+
 
     private void init() {
 
