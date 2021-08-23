@@ -86,7 +86,7 @@
                 android:drawableLeft="@drawable/ic_person_black_24dp"
                 android:inputType="text"
                 android:ems="18"
-                android:hint="First Name"/>
+                android:hint="Name"/>
 
             <EditText
                 android:id="@+id/phone_no"

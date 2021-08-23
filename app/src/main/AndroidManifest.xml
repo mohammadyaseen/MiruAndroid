@@ -4,10 +4,14 @@
     package="com.entertechsolutions.miruandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
+        android:exported="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -15,13 +19,20 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activities.YoutubeVideo" android:theme="@style/statusBarColor"
-            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"></activity>
-        <activity android:name=".Activities.Videos" android:theme="@style/statusBarColor"/>
-        <activity android:name=".Activities.Topics" android:theme="@style/statusBarColor"/>
+        <activity android:name=".Activities.PaymantWebView"></activity>
+        <activity
+            android:name=".Activities.YoutubeVideo"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:theme="@style/statusBarColor" />
+        <activity
+            android:name=".Activities.Videos"
+            android:theme="@style/statusBarColor" />
+        <activity
+            android:name=".Activities.Topics"
+            android:theme="@style/statusBarColor" />
         <activity
             android:name=".Activities.RegisterChild"
-            android:theme="@style/statusBarColor" />
+            android:theme="@style/statusBarColor"></activity>
         <activity
             android:name=".Activities.ChildList"
             android:theme="@style/statusBarColor" />
@@ -36,19 +47,33 @@
             android:theme="@style/themeForBg" />
         <activity
             android:name=".Activities.Login"
-            android:theme="@style/statusBarColor" />
+            android:theme="@style/statusBarColor">
+
+        </activity>
         <activity
             android:name=".Activities.Splash"
             android:theme="@style/themeForBg">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".Activities.MainActivity"
             android:theme="@style/statusBarColor" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.entertechsolutions.miruandroid.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
     </application>
 
 </manifest>

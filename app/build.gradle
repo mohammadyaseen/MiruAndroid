@@ -71,10 +71,17 @@ dependencies {
     //dialog loader
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
     //play Youtube video
-        implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 
     implementation 'com.abdshammout.UBV:library:1.0.2'
+    //circleimage
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+    //Photoview
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+    //Image Compressor
+    implementation 'id.zelory:compressor:2.1.0'
 
-
+    //tap target promt
+    implementation 'uk.co.samuelwall:material-tap-target-prompt:3.0.0'
 
 }

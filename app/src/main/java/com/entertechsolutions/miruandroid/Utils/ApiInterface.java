@@ -2,6 +2,8 @@ package com.entertechsolutions.miruandroid.Utils;
 
 
 import com.entertechsolutions.miruandroid.Activities.Videos;
+import com.entertechsolutions.miruandroid.Models.ChildListModel;
+import com.entertechsolutions.miruandroid.Models.ChildRegisterResponce;
 import com.entertechsolutions.miruandroid.Models.GenericResponseModelArray;
 import com.entertechsolutions.miruandroid.Models.HierarchyModel;
 import com.entertechsolutions.miruandroid.Models.LoginResponce;
@@ -68,6 +70,22 @@ public interface ApiInterface {
             @Url String url,
             @Header("token") String token);
 
+
+    //Get child list
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @GET
+    Call<GenericResponseModelArray<ChildListModel>> getChild(
+            @Url String url,
+            @Header("token") String token);
+
+
+    //Registration
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @POST("api/Profiles/Add")
+    Call<ChildRegisterResponce> registerChild(
+            @Header("token") String token,
+            @Body JsonObject body
+    );
 
   /*  // number verification
    // @FormUrlEncoded

@@ -1,5 +1,6 @@
 package com.entertechsolutions.miruandroid.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,13 +11,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.entertechsolutions.miruandroid.Models.LoginModel;
+import com.entertechsolutions.miruandroid.Models.LoginResponce;
 import com.entertechsolutions.miruandroid.Models.SignUpResponce;
 import com.entertechsolutions.miruandroid.Models.VerifyModel;
+import com.entertechsolutions.miruandroid.MyApplication;
 import com.entertechsolutions.miruandroid.R;
+import com.entertechsolutions.miruandroid.Storage.SharedPreffManager;
+import com.entertechsolutions.miruandroid.Utils.Functions;
 import com.entertechsolutions.miruandroid.Utils.ServiceUtils;
 import com.google.gson.JsonObject;
 
 import dmax.dialog.SpotsDialog;
+import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -25,7 +32,7 @@ public class VerifyCode extends AppCompatActivity {
     Button back_btn,next;
     EditText codetext;
     android.app.AlertDialog waitingDialog;
-    String email;
+    String email,password,code;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +40,8 @@ public class VerifyCode extends AppCompatActivity {
 
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
+        password = intent.getStringExtra("pass");
+        code = intent.getStringExtra("code");
         Log.e("Id   "," " + email);
 
 
@@ -59,11 +68,14 @@ public class VerifyCode extends AppCompatActivity {
 
         codetext = findViewById(R.id.numberVerify);
 
+        codetext.setText(code);
+
     }
 
 
     private void user_signup() {
 
+        codetext.setText(code);
         String Fname = codetext.getText().toString().trim();
 
 
@@ -105,12 +117,9 @@ public class VerifyCode extends AppCompatActivity {
                             if (loginResponse.getIsSuccess()) {
                                // Toast.makeText(VerifyCode.this, "", Toast.LENGTH_LONG).show();
                                 //loginResponse.ge().setAuthToken(userToken);
-                                Intent it = new Intent(VerifyCode.this, Login.class);
-                                it.putExtra("email", email);
-                                it.putExtra("verify",0);
-                                //it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                startActivity(it);
+                                UserLogin(email,password);
+
+
                                 Log.e("data", "Token  " + loginResponse.getMessage());
                                 Toast.makeText(VerifyCode.this,loginResponse.getMessage(),Toast.LENGTH_LONG).show();
                                 Toast.makeText(VerifyCode.this,"Please Login your Account",Toast.LENGTH_LONG).show();
@@ -134,5 +143,56 @@ public class VerifyCode extends AppCompatActivity {
 
     }
 
+
+    public  void  UserLogin(String phoneno, String password){
+
+        waitingDialog.show();
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("email", phoneno);
+        jsonObject.addProperty("password", password);
+
+        ServiceUtils.api.Login(jsonObject)
+                .enqueue(new Callback<LoginResponce>() {
+                    @Override
+                    public void onResponse(@NonNull Call<LoginResponce> call, @NonNull Response<LoginResponce> response) {
+                        //progressBar.setVisibility(View.GONE);
+                        LoginResponce loginResponse = response.body();
+                        if (response.isSuccessful() && response.body() != null) {
+                            assert loginResponse != null;
+                            if (loginResponse.getIsSuccess()) {
+
+                                LoginModel loginResponce = loginResponse.getData();
+
+                                waitingDialog.hide();
+                                Log.e("response","Name   "+loginResponce.getName());
+                                // Toast.makeText(Login.this, login_data_model.getUser().getName(), Toast.LENGTH_LONG).show();
+                                //token = loginResponse.getData().getToken();
+                                //updateToken(token);
+                                loginResponce.setAuthToken(loginResponse.getToken());
+                                SharedPreffManager.getInstance(MyApplication.getContext()).saveUser(loginResponse.getData());
+                                Intent it = new Intent(VerifyCode.this, ChildList.class);
+                                it.putExtra("email", email);
+                                it.putExtra("verify",0);
+                                //it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                startActivity(it);
+
+                            } else {
+                                waitingDialog.hide();
+                                Toast.makeText(MyApplication.getContext(), loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<LoginResponce> call, Throwable t) {
+                        waitingDialog.hide();
+                        Toast.makeText(MyApplication.getContext(), "Something Went Wrong Please Try Again", Toast.LENGTH_SHORT).show();
+
+
+                    }
+                });
+    }
 
 }

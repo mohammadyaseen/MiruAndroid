@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.entertechsolutions.miruandroid.Activities.ChildList;
 import com.entertechsolutions.miruandroid.Adapters.MainListAdapter;
 import com.entertechsolutions.miruandroid.R;
 import com.entertechsolutions.miruandroid.Utils.Constant;
@@ -22,12 +23,12 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
 
 
 
-    List<Task_Model> mValues;
+    List<ChildListModel> mValues;
     Context mContext;
     private ChildListAdapter.OnItemClickListener mListener;
 
 
-    public ChildListAdapter(Context context, List<Task_Model> values, ChildListAdapter.OnItemClickListener listener1){
+    public ChildListAdapter(Context context, List<ChildListModel> values, ChildListAdapter.OnItemClickListener listener1){
 
         this.mContext = context;
         this.mValues = values;
@@ -49,7 +50,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
 
         }
 
-        public void bind(final Task_Model item, final ChildListAdapter.OnItemClickListener listener) {
+        public void bind(final ChildListModel item, final ChildListAdapter.OnItemClickListener listener) {
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -90,18 +91,20 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
         holder.name.setText(mValues.get(position).getName());
        // int icon = R.drawable.ic_clear_black_24dp;
 
-      /*  String pathimage = "images/Hierarchy/test/2021/8/1/"+ mValues.get(position).getImagePath();
+        String BASE_URL = "https://miru.cx/webapi";
+
+        String pathimage =  mValues.get(position).getImagePath();
         if (mValues.get(position).getImagePath()==null){
             // holder.imageView.setBackgroundResource(R.drawable.ic_clear_black_24dp);
         }
         else {
             holder.imageView.setVisibility(View.VISIBLE);
             Glide.with(holder.imageView)
-                    .load(Constant.BASE_URL+pathimage)
+                    .load(BASE_URL+pathimage)
                     .skipMemoryCache( false )
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(holder.imageView);
-        }*/
+        }
 
         // holder.imageView.(mValues.get(position).getTaskDetail());
 
@@ -114,7 +117,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
     }
 
     public interface OnItemClickListener {
-        void onClick(Task_Model main_task_model);
+        void onClick(ChildListModel main_task_model);
     }
 
 

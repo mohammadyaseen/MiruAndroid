@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +16,10 @@ import android.widget.Toast;
 
 import com.entertechsolutions.miruandroid.Models.LoginModel;
 import com.entertechsolutions.miruandroid.Models.LoginResponce;
+import com.entertechsolutions.miruandroid.MyApplication;
 import com.entertechsolutions.miruandroid.R;
+import com.entertechsolutions.miruandroid.Skrill.HttpURLConnectionPayment;
+import com.entertechsolutions.miruandroid.Skrill.SkrillApiClass;
 import com.entertechsolutions.miruandroid.Storage.SharedPreffManager;
 import com.entertechsolutions.miruandroid.Utils.Constant;
 import com.entertechsolutions.miruandroid.Utils.ServiceUtils;
@@ -30,7 +34,7 @@ import retrofit2.Response;
 
 public class Login extends AppCompatActivity {
 
-    Button back_btn ,login;
+    Button back_btn ,login,payBtn;
     EditText pass, email;
     TextView register, fotgotpass;
     ProgressBar progressBar;
@@ -41,6 +45,16 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         login=findViewById(R.id.login);
+        payBtn = findViewById(R.id.pay);
+
+        int SDK_INT = android.os.Build.VERSION.SDK_INT;
+        if (SDK_INT > 8)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+        }
 
         waitingDialog = new SpotsDialog.Builder()
                 .setContext(Login.this)
@@ -56,6 +70,24 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        payBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent it = new Intent(MyApplication.getContext(), PaymantWebView.class);
+                startActivity(it);
+
+
+            }
+        });
+
+
+       /* SkrillApiClass payout = new SkrillApiClass("the_creech@abv.bg", "skrill123", "2", "EUR", "TRNy1",
+                "testcustomer999@skrill.com", "subject1", "Note1");
+
+        System.out.println(payout.SendMoney());*/
+
         pass = findViewById(R.id.password);
         email = findViewById(R.id.email);
 
@@ -69,6 +101,9 @@ public class Login extends AppCompatActivity {
         });
 
     }
+
+
+
 
     public void  UserLogin(){
         String phoneno = email.getText().toString().trim();
@@ -110,7 +145,7 @@ public class Login extends AppCompatActivity {
                                 //updateToken(token);
                                 login_data_model.setAuthToken(loginResponse.getToken());
                                 SharedPreffManager.getInstance(Login.this).saveUser(loginResponse.getData());
-                                Intent it = new Intent(Login.this, MainActivity.class);
+                                Intent it = new Intent(Login.this, ChildList.class);
                                 // it.putExtra("num", phoneNo);
                                 startActivity(it);
                                 finish();
@@ -123,9 +158,9 @@ public class Login extends AppCompatActivity {
 
                     @Override
                     public void onFailure(@NonNull Call<LoginResponce> call, Throwable t) {
-                        progressBar.setVisibility(View.GONE);
                         Toast.makeText(Login.this, "Something Went Wrong Please Try Again", Toast.LENGTH_SHORT).show();
                         waitingDialog.hide();
+
 
                     }
                 });

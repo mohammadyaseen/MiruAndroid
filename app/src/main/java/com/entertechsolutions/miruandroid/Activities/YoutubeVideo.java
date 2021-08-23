@@ -76,6 +76,7 @@ public class YoutubeVideo extends AppCompatActivity {
                     waitingDialog.hide();
                     String videoId = "S0Q4gqBUs7c";
                     youTubePlayer.loadVideo(path, 0);
+
                 }
             });
 

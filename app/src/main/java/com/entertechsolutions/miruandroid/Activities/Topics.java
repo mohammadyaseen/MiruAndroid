@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import com.entertechsolutions.miruandroid.Models.HierarchyModel;
 import com.entertechsolutions.miruandroid.Models.TopicsModel;
 import com.entertechsolutions.miruandroid.MyApplication;
 import com.entertechsolutions.miruandroid.R;
+import com.entertechsolutions.miruandroid.Storage.SharedPreffManager;
 import com.entertechsolutions.miruandroid.Utils.ServiceUtils;
 
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ public class Topics extends AppCompatActivity {
     List<TopicsModel> requestlist = new ArrayList<>();
     Button back_btn;
     TopicsModel list ;
-    String userToken = "6bPUFHaUpxMIVeP6YCVSZg==";
+    String userToken ;
     String Rid ;
     android.app.AlertDialog waitingDialog;
     @Override
@@ -46,6 +48,7 @@ public class Topics extends AppCompatActivity {
         Intent intent = getIntent();
         Rid = intent.getStringExtra("Rid");
         Log.e("Id   "," " + Rid);
+        userToken = SharedPreffManager.getInstance(this).getUser().getAuthToken();
 
         back_btn = findViewById(R.id.backTopics);
         back_btn.setOnClickListener(v -> onBackPressed());

@@ -45,7 +45,7 @@ public class Registration extends AppCompatActivity {
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(Registration.this, VerifyCode.class);
+               /* Intent intent = new Intent(Registration.this, VerifyCode.class);
                 //waitingDialog.hide();
                 startActivity(intent);*/
                 user_signup();
@@ -74,7 +74,7 @@ public class Registration extends AppCompatActivity {
         String pass = password.getText().toString().trim();
 
         if (Fname.isEmpty()) {
-            firstname.setError("FirstName Is Required");
+            firstname.setError("Name Is Required");
             firstname.requestFocus();
             return;
         }
@@ -133,6 +133,8 @@ public class Registration extends AppCompatActivity {
                                 //loginResponse.ge().setAuthToken(userToken);
                                 Intent it = new Intent(Registration.this, VerifyCode.class);
                                 it.putExtra("email", email);
+                                it.putExtra("pass",pass);
+                                it.putExtra("code",loginResponse.getCode());
                                 //it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                                 startActivity(it);

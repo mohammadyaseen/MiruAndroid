@@ -22,6 +22,7 @@ import com.entertechsolutions.miruandroid.Models.HierarchyModel;
 import com.entertechsolutions.miruandroid.Models.Task_Model;
 import com.entertechsolutions.miruandroid.MyApplication;
 import com.entertechsolutions.miruandroid.R;
+import com.entertechsolutions.miruandroid.Storage.SharedPreffManager;
 import com.entertechsolutions.miruandroid.Utils.ServiceUtils;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     List<HierarchyList> requestlist = new ArrayList<>();
     Button back_btn;
     HierarchyModel list ;
-    String userToken = "6bPUFHaUpxMIVeP6YCVSZg==";
+    String userToken ;
     String Rid = "0";
     android.app.AlertDialog waitingDialog;
     ArrayList<String> stringsBreadcrumb = new ArrayList<>();
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         back_btn = findViewById(R.id.back_btn_l);
         back_btn.setOnClickListener(v -> onBackPressed());
         stringsBreadcrumb.add("System");
+        userToken = SharedPreffManager.getInstance(this).getUser().getAuthToken();
 
 
         ultimateBreadcrumbsView = findViewById(R.id.ultimateBreadcrumbsView);
