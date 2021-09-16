@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.MainActivity">
+    tools:context=".Activities.Subscriptions">
+
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/Main_toolbar"
@@ -14,7 +16,7 @@
         android:background="@color/colorPrimaryDark">
 
         <Button
-            android:id="@+id/back_btn_l"
+            android:id="@+id/backBtnSubs"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
@@ -30,7 +32,7 @@
             android:layout_gravity="center"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:text="Hierarchy"
+            android:text="Subscriptions"
             android:textColor="@color/white"
             />
 
@@ -39,23 +41,14 @@
     </androidx.appcompat.widget.Toolbar>
 
 
-    <com.abdshammout.UBV.UltimateBreadcrumbsView
-        android:id="@+id/ultimateBreadcrumbsView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:pathItemBackground="@drawable/bg_two_corner"
-        app:pathItemTextColor="@android:color/white"
-        app:activePathItemBackground="@drawable/bg_two_corner_active"
-        app:activePathItemTextColor="@android:color/black"
-        app:backButtonBackground="@drawable/bg_two_corner"
-        app:backButtonIcon="@drawable/ic_arrow_forward_black_24dp">
-    </com.abdshammout.UBV.UltimateBreadcrumbsView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:id="@+id/recycleMain"/>
+        android:id="@+id/recycleSubs"/>
+
+
 
 
 

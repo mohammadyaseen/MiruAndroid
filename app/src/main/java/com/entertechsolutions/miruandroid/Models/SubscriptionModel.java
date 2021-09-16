@@ -3,44 +3,34 @@ package com.entertechsolutions.miruandroid.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ChildListModel {
+public class SubscriptionModel {
+
+
 
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("email")
-    @Expose
-    private String email;
-    @SerializedName("phoneNo")
-    @Expose
-    private String phoneNo;
-    @SerializedName("password")
-    @Expose
-    private String password;
-    @SerializedName("token")
-    @Expose
-    private String token;
-    @SerializedName("parentId")
-    @Expose
-    private Integer parentId;
-    @SerializedName("isShow")
-    @Expose
-    private Boolean isShow;
-    @SerializedName("parentName")
-    @Expose
-    private String parentName;
     @SerializedName("systemId")
     @Expose
     private Integer systemId;
-    @SerializedName("base64")
+    @SerializedName("amount")
     @Expose
-    private String base64;
-    @SerializedName("imagePath")
+    private Double amount;
+    @SerializedName("active")
     @Expose
-    private String imagePath;
-    @SerializedName("paymentModel")
+    private Boolean active;
+    @SerializedName("duration")
     @Expose
-    private PaymentModel paymentModel;
+    private Integer duration;
+    @SerializedName("isTrail")
+    @Expose
+    private Boolean isTrail;
+    @SerializedName("systemName")
+    @Expose
+    private String systemName;
+    @SerializedName("durationName")
+    @Expose
+    private String durationName;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -74,62 +64,6 @@ public class ChildListModel {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
-
-    public Boolean getIsShow() {
-        return isShow;
-    }
-
-    public void setIsShow(Boolean isShow) {
-        this.isShow = isShow;
-    }
-
-    public String getParentName() {
-        return parentName;
-    }
-
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
-    }
-
     public Integer getSystemId() {
         return systemId;
     }
@@ -138,28 +72,52 @@ public class ChildListModel {
         this.systemId = systemId;
     }
 
-    public String getBase64() {
-        return base64;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setBase64(String base64) {
-        this.base64 = base64;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
-    public PaymentModel getPaymentModel() {
-        return paymentModel;
+    public Integer getDuration() {
+        return duration;
     }
 
-    public void setPaymentModel(PaymentModel paymentModel) {
-        this.paymentModel = paymentModel;
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public Boolean getIsTrail() {
+        return isTrail;
+    }
+
+    public void setIsTrail(Boolean isTrail) {
+        this.isTrail = isTrail;
+    }
+
+    public String getSystemName() {
+        return systemName;
+    }
+
+    public void setSystemName(String systemName) {
+        this.systemName = systemName;
+    }
+
+    public String getDurationName() {
+        return durationName;
+    }
+
+    public void setDurationName(String durationName) {
+        this.durationName = durationName;
     }
 
     public Integer getId() {
@@ -225,4 +183,5 @@ public class ChildListModel {
     public void setIsVerified(Boolean isVerified) {
         this.isVerified = isVerified;
     }
+
 }

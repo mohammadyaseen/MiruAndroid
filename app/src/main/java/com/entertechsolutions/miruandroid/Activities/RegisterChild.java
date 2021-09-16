@@ -305,7 +305,7 @@ public class RegisterChild extends AppCompatActivity {
             }
         }
 
-        else if (requestCode == SELECT_PICK){
+        else if (requestCode == PICK_IMAGE){
             Bitmap bm = null;
             if (data != null) {
                 try {
@@ -315,9 +315,11 @@ public class RegisterChild extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                imageFilePath = getRealPathFromURI( data.getData());
+
                 try {
+                    imageFilePath = getRealPathFromURI( data.getData());
                     imageFile = new Compressor(getApplicationContext()).compressToFile(new File(imageFilePath));
+                    encodstring = encodeFileToBase64Binary(imageFile);
                     Log.e("new ", "Next" + data.getData());
                 } catch (IOException e) {
                     e.printStackTrace();

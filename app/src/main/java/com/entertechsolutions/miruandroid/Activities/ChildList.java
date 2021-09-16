@@ -1,10 +1,12 @@
 package com.entertechsolutions.miruandroid.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,9 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.CirclePromptBackground;
-import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.RectanglePromptBackground;
 import uk.co.samuelwall.materialtaptargetprompt.extras.focals.CirclePromptFocal;
-import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal;
 
 public class ChildList extends AppCompatActivity {
 
@@ -59,7 +59,24 @@ public class ChildList extends AppCompatActivity {
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                AlertDialog.Builder alert = new AlertDialog.Builder(ChildList.this);
+                alert.setTitle("Do you want to logout?");
+                // alert.setMessage("Message");
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        SharedPreffManager.getInstance(ChildList.this).clear();
+                        Intent Log_out = new Intent(ChildList.this, Slider.class);
+                        startActivity(Log_out);
+                        finish();
+                        Toast.makeText(ChildList.this,"Logged Out",Toast.LENGTH_LONG).show();
+                    }
+                });
+                alert.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                            }
+                        });
+                alert.show();
             }
         });
         waitingDialog = new SpotsDialog.Builder()
@@ -82,9 +99,23 @@ public class ChildList extends AppCompatActivity {
          adapter = new ChildListAdapter(ChildList.this, requestlist, new ChildListAdapter.OnItemClickListener() {
             @Override
             public void onClick(ChildListModel main_task_model) {
-                Intent intent = new Intent(ChildList.this, MainActivity.class);
-                //waitingDialog.hide();
-                startActivity(intent);
+
+                if (main_task_model.getPaymentModel().getStatus().equals("Paid")){
+                    Intent it = new Intent(MyApplication.getContext(), MainActivity.class);
+                    //it.putExtra("guid", loginResponse.getData());
+                    it.putExtra("systemId",main_task_model.getPaymentModel().getSystemId());
+                    it.putExtra("text", "s");
+                    startActivity(it);
+                }
+                else {
+                    Intent intent = new Intent(ChildList.this, Subscriptions.class);
+                    intent.putExtra("profile",main_task_model.getId());
+                    //waitingDialog.hide();
+                    startActivity(intent);
+
+                }
+
+               /* */
             }
         });
 

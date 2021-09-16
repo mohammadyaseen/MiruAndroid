@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     HierarchyModel list ;
     String userToken ;
     String Rid = "0";
+    int systemid;
+    String text ;
     android.app.AlertDialog waitingDialog;
     ArrayList<String> stringsBreadcrumb = new ArrayList<>();
     PathItem pathItem ;
@@ -51,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        systemid = intent.getIntExtra("systemId",-1);
+        text = intent.getStringExtra("text");
+        Log.e("Id   "," " + systemid);
+
+
         back_btn = findViewById(R.id.back_btn_l);
         back_btn.setOnClickListener(v -> onBackPressed());
         stringsBreadcrumb.add("System");
@@ -79,8 +88,18 @@ public class MainActivity extends AppCompatActivity {
         ultimateBreadcrumbsView.setOnClickListenerBreadcrumbs(new OnClickListenerBreadcrumbs() {
             @Override
             public void onBackClick() {
-                getRequest("0");
-                ultimateBreadcrumbsView.back();
+                if(text != null) {
+                    if (text.equals("s")) {
+                        getRequest(String.valueOf(systemid));
+                    } else {
+                        getRequest(Rid);
+                    }
+                }
+                else {
+                    getRequest(Rid);
+                }
+               // getRequest("0");
+                ultimateBreadcrumbsView.backTo(0);
                 Toast.makeText(MainActivity.this,
                         "onBackClick", Toast.LENGTH_SHORT).show();
             }
@@ -110,7 +129,18 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .build();
 
-        if (Rid=="0"){
+       /* if (Rid=="0"){
+            getRequest(Rid);
+        }*/
+
+        if(text != null) {
+            if (text.equals("s")) {
+                getRequest(String.valueOf(systemid));
+            } else {
+                getRequest(Rid);
+            }
+        }
+        else {
             getRequest(Rid);
         }
 

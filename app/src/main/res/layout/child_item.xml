@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
@@ -20,11 +22,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/group21"
-            android:id="@+id/imagechile"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imagechile"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/group21"
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/light_gray"
+                android:layout_centerHorizontal="true"
+                android:elevation="30dp"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content">
 
 
             <TextView
@@ -37,6 +48,20 @@
                 android:layout_marginLeft="15dp"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/validTo"
+                android:layout_below="@id/childName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="valid"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 

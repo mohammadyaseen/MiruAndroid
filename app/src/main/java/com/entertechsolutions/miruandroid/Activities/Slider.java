@@ -29,8 +29,7 @@ public class Slider extends AppCompatActivity {
     private static int NUM_PAGES = 0;
     private ArrayList<image_Model> imageModelArrayList;
 
-    private int[] myImageList = new int[]{R.drawable.banner1, R.drawable.mirulogo,
-            R.drawable.mirulogo,R.drawable.mirulogo};
+    private int[] myImageList = new int[]{R.drawable.british,R.drawable.american,R.drawable.international};
 
 
     @Override
@@ -83,7 +82,7 @@ public class Slider extends AppCompatActivity {
     private ArrayList<image_Model> populateList(){
 
         ArrayList<image_Model> list = new ArrayList<>();
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < 3; i++){
             image_Model imageModel = new image_Model();
             imageModel.setImage_drawable(myImageList[i]);
             list.add(imageModel);

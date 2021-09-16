@@ -67,6 +67,36 @@ public class Functions {
         return formatted;
     }
 
+    public static String getDateNumaric(Object object){
+        if (object == null) return "";
+
+        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");//dd/MM/yyyy
+        // input.setTimeZone(TimeZone.getTimeZone("GTM"));
+        Date d = null;
+        try {
+            d = input.parse(object.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String formatted = sdfDate.format(d);
+        return formatted;
+    }
+
+
+    public static String getTrial(Boolean trial){
+
+        String weatherIcon ;
+
+        if (trial == true) {
+            weatherIcon = "Trial Available";
+        } else  {
+            weatherIcon = "Trial Not Available";
+        }
+        return weatherIcon;
+
+
+    }
 
 
 }

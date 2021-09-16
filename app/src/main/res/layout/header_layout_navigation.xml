@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/gray"
+    android:padding="30dp"
+    android:elevation="30dp"
+    android:layout_height="200dp">
+
+   <!-- <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user"
+        android:layout_marginTop="40dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/group21"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/light_gray"
+        android:elevation="30dp"
+        android:layout_centerHorizontal="true"/>
+-->
+ <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+     android:elevation="30dp"
+    android:id="@+id/username"
+    android:textSize="25sp"
+    android:textColor="@color/colorPrimary"
+    android:text="Muhammad Usama">
+
+</TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:elevation="30dp"
+        android:id="@+id/validTo"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="Valid From ">
+
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/validFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@id/username"
+        android:layout_centerHorizontal="true"
+        android:elevation="30dp"
+        android:text="Valid Till "
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp"
+        android:textStyle="bold">
+
+    </TextView>
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/validTo"
+        android:elevation="30dp"
+        android:id="@+id/duration"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/green_dark"
+        android:text="Duration ">
+
+    </TextView>
+
+
+</RelativeLayout>

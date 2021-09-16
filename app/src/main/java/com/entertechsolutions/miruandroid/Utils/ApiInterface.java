@@ -5,9 +5,11 @@ import com.entertechsolutions.miruandroid.Activities.Videos;
 import com.entertechsolutions.miruandroid.Models.ChildListModel;
 import com.entertechsolutions.miruandroid.Models.ChildRegisterResponce;
 import com.entertechsolutions.miruandroid.Models.GenericResponseModelArray;
+import com.entertechsolutions.miruandroid.Models.GidModel;
 import com.entertechsolutions.miruandroid.Models.HierarchyModel;
 import com.entertechsolutions.miruandroid.Models.LoginResponce;
 import com.entertechsolutions.miruandroid.Models.SignUpResponce;
+import com.entertechsolutions.miruandroid.Models.SubscriptionModel;
 import com.entertechsolutions.miruandroid.Models.TopicsModel;
 import com.entertechsolutions.miruandroid.Models.VerifyModel;
 import com.entertechsolutions.miruandroid.Models.VideosModel;
@@ -86,6 +88,23 @@ public interface ApiInterface {
             @Header("token") String token,
             @Body JsonObject body
     );
+
+
+    //Get child list
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @GET
+    Call<GenericResponseModelArray<SubscriptionModel>> getSubs(
+            @Url String url,
+            @Header("token") String token);
+
+
+    //GUID
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @POST("api/UserSubscription/Add")
+    Call<GidModel> getgu(
+            @Body JsonObject body,
+             @Header("token") String token);
+
 
   /*  // number verification
    // @FormUrlEncoded
